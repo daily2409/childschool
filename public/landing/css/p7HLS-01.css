@@ -1,0 +1,116 @@
+
+.p7HLS-01 {
+	overflow: hidden;
+	color: #000;
+	border: 1px solid;
+	border-color: rgba(0,0,0,0.65);
+	font-family: "Segoe UI", "Gill Sans", Optima, sans-serif;
+	background-color: rgba(255,255,255,0.5); 
+}
+.p7HLS-01.flush-top {
+	border: none;
+	border-radius: 0px;
+	border-bottom: 1px solid;
+}
+.p7HLS-01.rounded {
+	border-radius: 5px;
+}
+.p7HLS-01.flush-top.rounded {
+	border-radius: 5px 5px 0px 0px;
+}
+.p7HLS-01.flush-top.shadow {
+	box-shadow: 0px 0px 40px rgba(0,0,0,.5);
+	border-color: rgba(0,0,0,0.35);
+}
+.p7HLS-01.shadow { box-shadow: 0px 0px 40px rgba(0,0,0,.35);}
+
+.p7HLS-01.shadow:after {
+	content: ".";
+	display: block;
+	height: 1px;
+	margin-top: -2px;
+    color: rgba(255,255,255,0);
+	background-color: rgba(255,255,255,0); 
+}
+
+.p7HLS-01 .p7hls-viewport {
+	overflow: hidden;
+	position: relative;
+}
+.p7HLS-01 .p7hls-wrapper {
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+.p7HLS-01 .p7hls-item {
+	margin: 0;
+	padding: 10px 40px 10px 12px;
+	font-size: inherit;
+}
+.p7HLS-01.bullet .p7hls-item {
+	background-image: url(img/p7hls-bullet-dark.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+
+.p7HLS-01 .p7hls-item a {
+	color: #000000;
+	text-decoration: none;
+	border-bottom: 1px dotted;
+}
+.p7HLS-01 .p7hls-item a:hover {
+	color: #000;
+	border-bottom-style: solid;
+}
+
+.p7HLS-01 .p7hls-item h1,
+.p7HLS-01 .p7hls-item h2,
+.p7HLS-01 .p7hls-item h3,
+.p7HLS-01 .p7hls-item h4,
+.p7HLS-01 .p7hls-item h5 {
+	font-size: 1em;
+	font-weight: bold;
+	letter-spacing: normal;
+}
+
+
+.p7HLS-01 .tool-bar {
+	float: right;
+	overflow: hidden;
+	display: table;
+	border-left: 1px solid;
+	box-shadow: inset 0px 10px 3px rgba(255,255,255,.15);
+}
+.p7HLS-01 .tool-bar ul {
+	margin: 0;
+	padding: 0;
+	display: table-cell;
+	vertical-align: middle;
+}
+.p7HLS-01 .tool-bar li {
+	list-style-type: none;
+	float: left;
+	margin: 0px 3px;
+}
+.p7HLS-01 .tool-bar a {
+	font-size: 0px;
+	color: rgba(0,0,0,1);
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 18px;
+	height: 19px;
+	display: block;
+	opacity: .5;
+}
+.p7HLS-01 .tool-bar a:hover {opacity: 1;}
+.p7HLS-01 .tool-bar .previous { background-image: url(img/p7hls-prev-dark.png); }
+.p7HLS-01 .tool-bar .pause { background-image: url(img/p7hls-pause-dark.png); }
+.p7HLS-01 .tool-bar .play { background-image: url(img/p7hls-play-dark.png); }
+.p7HLS-01 .tool-bar .next { background-image: url(img/p7hls-next-dark.png); }
+
+
+ @media only screen and (min-width: 0px) and (max-width: 700px) {
+.p7HLS-01 .tool-bar { float: none; width: 100%; height: auto !important; padding: 3px 0px; text-align: center; }
+.p7HLS-01 .tool-bar ul {display: inline-block;}
+}
