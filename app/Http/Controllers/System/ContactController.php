@@ -31,7 +31,23 @@ class ContactController extends Controller
         $contact = Contact::find($id);
         return view('System.Contact.EditContact', compact('contact'));
     }
-
+    public function postAddContact(Request $req){
+        $arr_insert = [
+            'title' => $req->title,
+            'name' => $req->fullname,
+            'phonenumber' => $req->phone,
+            'email' => $req->email,
+        ];
+        $insert = Contact::addContact($arr_insert);
+        if($insert){
+            $user = Auth::user();
+            $action = 17;
+            $comment = 'Create new contact by ID: '.$user->id;
+            Log::insertLog($user->id, $action, $comment);
+            return response(array('status'=>true, 'msg'=> 'Create new menu success !'), 200);
+        }
+        return response(array('status'=>false, 'msg'=> 'Create new menu fail !'), 200);
+    }
     public function postEditContact(Request $req){
         $id = $req->id;
         $name = $req->name;

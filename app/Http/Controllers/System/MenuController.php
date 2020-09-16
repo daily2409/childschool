@@ -18,9 +18,28 @@ class MenuController extends Controller
         $menu = Menu::where(['status' => 1, 'menu_id' => NULL])->get();
         $service = Service::where('status', 1)->get();
         $product = Product::where('status', 1)->get();
+        // dd(($service[0]->toArray()));
         return view('System.Menu.ListMenu', compact('menu', 'service', 'product'));
     }
-
+    public function postAddMenu(Request $req){
+        $arr_insert = [
+            'name' => $req->name,
+            'service_id' => $req->service,
+            'product_id' => $req->product,
+            'href' => $req->href,
+            'menu_id' => $req->menu,
+            'status' => $req->status
+        ];
+        $insert = Menu::addMenu($arr_insert);
+        if($insert){
+            $user = Auth::user();
+            $action = 17;
+            $comment = 'Create new Menu by ID: '.$user->id;
+            Log::insertLog($user->id, $action, $comment);
+            return response(array('status'=>true, 'msg'=> 'Create new menu success !'), 200);
+        }
+        return response(array('status'=>false, 'msg'=> 'Create new menu fail !'), 200);
+    }
     public function postEditMenu(Request $request)
     {
         Menu::truncate();

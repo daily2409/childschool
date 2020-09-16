@@ -393,6 +393,70 @@
 </style>
 @endsection
 @section('content')
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="padding-top:0%">
+        
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h5 class="modal-title">Add Menu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-times" aria-hidden="true" ></i>
+                </button>
+                
+                
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Name</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Service</label>
+                        <select class="form-control" id="service">
+                            @foreach($service as $ser)
+                                <option value="{!!$ser->id!!}">{!!$ser->title!!}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Product</label>
+                        <select class="form-control" id="product">
+                            @foreach($product as $pro)
+                                <option value="{!!$pro->id!!}">{!!$pro->name!!}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">href</label>
+                        <input type="text" class="form-control" id="href">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Menu parent</label>
+                        <select class="form-control" id="menu">
+                            @foreach($menu as $men)
+                                <option value="{!!$men->id!!}">{!!$men->name!!}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Status</label>
+                        <select class="form-control" id="menustatus">
+                            <option value="1">Active</option>
+                            <option value="0">Un-Active</option>
+                        </select>
+                    </div>
+                
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="add-menu">Add Category</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
 
     <div class="row">
@@ -403,11 +467,13 @@
         </div>
     </div>
     <!-- end page title end breadcrumb -->
+    
 
-   
     <div class="row">
 	    <div class="col-lg-8 col-md-8">
+            
 		    <div class="row">
+                
 			    <div class="col-md-6 col-lg-6 menu-d">
 		            <div class="element-wrapper">
 		                <div class="element-box">
@@ -438,7 +504,8 @@
 		                    </div>
 		                </div>
 		            </div>
-		        </div>
+                </div>
+                
 		        <div class="col-md-6 col-lg-6 menu-d">
 		            <div class="element-wrapper">
 		                <div class="element-box">
@@ -450,10 +517,10 @@
 		                        </div>
 		                        <div id="url" class="panel-collapse card-body pt-0 pb-0">
 		                            <div>
-                                        Name: <input type="text" name="name_url" id="name-url">
+                                        Name: <input type="text" name="name_url" id="name-url"  class="form-control" >
                                     </div>
                                     <div>
-                                        Url: <input type="text" name="url" id="inp-url">
+                                        Url: <input type="text" name="url" id="inp-url"  class="form-control" >
                                     </div>
 		                        </div>
 		                        <div class="form-buttons-w p-3">
@@ -495,7 +562,8 @@
 		                    </div>
 		                </div>
 		            </div>
-		        </div>
+                </div>
+                
 		        <div class="col-md-6 col-lg-6 menu-d" >
 		            <div class="element-wrapper">
 		                <div class="element-box">
@@ -520,7 +588,7 @@
 		        </div>
 		    </div>
 	    </div>
-        
+
         <div class="col-md-6  col-lg-4 menu-d cf nestable-lists">
             <div class="row">
                 <div class="col-md-12">
@@ -537,7 +605,7 @@
 	                                data-service_id="{{$item->service_id}}" data-product_id="{{$item->product_id}}" data-url="{{$item->href}}">
 	                                <div class="dd-handle" style="padding-right: 5px">
                                         {{$item->name}}
-                                        
+
                                     </div>
                                     <button data-id="{{$item->id}}" class="pull-right button-remove no-border btn btn-xs"><i class="fa fa-trash"></i></button>
 	                                @if(count($item->menu_child))
@@ -548,7 +616,7 @@
 	                                        data-product_id="{{$child->product_id}}" data-url="{{$item->href}}">
 	                                        <div class="dd-handle" style="padding-right: 5px">
 		                                        {{$child->name}}
-												
+
 		                                    </div>
 	                                        <button data-id="{{$child->id}}" class="pull-right button-remove no-border btn btn-xs"><i class="fa fa-trash"></i></button>
 	                                    </li>
@@ -561,8 +629,10 @@
                         </div>
 		                <div class="col-md-12 p-0">
 		                    <div class="form-buttons-w p-3">
-		                        <button id="btn-submit" class="test btn btn-primary" value="">Update</button>
-		                    </div>
+                                <button id="btn-submit" class="test btn btn-primary" value="">Update</button>
+                                <button id="btn-submit" class="test btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Insert Menu</button>
+                            </div>
+                    
 		                    <li class="dd-item dd-item-clone d-none" data-name="" data-id=""
 		                        data-service_id="" data-product_id="" data-url="">
 		                        <div class="item-wrap dd-handle" style="padding-right: 5px">
@@ -584,7 +654,9 @@
 @endsection
 
 @section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
 <script type="text/javascript">
+    var token = '{{ csrf_token() }}';
     $(document).ready(function()
     {
         $('.click-edit-menu').on('click', function(){
@@ -630,14 +702,14 @@
                 itemClone.find('.item-wrap .item-name').text(name);
                 itemClone.find('.button-remove').attr('data-id', id_location+1);
                 itemClone.removeClass('dd-item-clone d-none');
-            
+
                 $('.nested-list ol.dd-list:first-child').append(itemClone[0]);
-                
+
                 $('#'+type+' input[type=checkbox]').prop('checked', false);
                 updateOutput($('#nestable').data('output', $('#nestable-output')));
             });
         }
-        
+
     }
     $('.nested-list').nestable({maxDepth: 2});
     var data_json_menu = '';
@@ -688,6 +760,40 @@
         $(this).parent().remove();
         updateOutput($('#nestable').data('output', $('#nestable-output')));
     });
- 
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var recipient = button.data('whatever') 
+        var modal = $(this)
+        modal.find('.modal-title').text(recipient)
+        modal.find('.modal-body input').val(recipient)
+    });
+    $("#add-menu").click(function(e) {
+        e.preventDefault(); 
+        name = $('#name').val()
+       
+        service =  $('#service').find('option:selected').attr('value')
+        product = $('#product').find('option:selected').attr('value')
+        status = $('#menustatus').find('option:selected').attr('value')
+        menu = $('#menu').find('option:selected').attr('value')
+        href = $('#href').val()
+     
+        $.ajax({
+                method: "POST",
+                url: '{{route("system.menu.postAddMenu")}}',
+                data: {_token: token, 'name': name, 'service': service, 'product': product, 'href': href, 'menu': menu, 'status':status},
+                success: function (result) {
+                    if(result.status == true){
+
+                        // $('#exampleModal').modal('hide');
+                        swal("Done!", "It was succesfully deleted!", "success");
+
+                    }else{
+                        // $('#exampleModal').modal('hide');
+                        swal("Error "+result.message, "Please try again", "error");
+                    }location.reload();
+                }
+        });
+    });
+
 </script>
 @endsection

@@ -16,7 +16,7 @@ Route::get('/admin', 'HomeController@getIndexAdmin')->name('getIndex');
 Route::get('/solution', 'HomeController@getSolution')->name('getSolution');
 Route::get('/product', 'HomeController@getProduct')->name('getProduct');
 Route::get('/app-game', 'HomeController@getAppGame')->name('getAppGame');
-Route::get('/new', 'HomeController@getNewDetail')->name('getNew');
+Route::get('/new', 'System\NewsController@showNews')->name('getNew');
 Route::get('/new-detail', 'HomeController@getNewDetail')->name('getNewDetail');
 
 Route::get('system/login', 'Auth\LoginController@getLogin')->name('getLogin');
@@ -104,6 +104,21 @@ Route::group(['prefix' => 'system', 'middleware' => 'AdminLoginMiddleware'], fun
         Route::post('edit', 'System\NewsController@postEditNews')->name('system.news.postEditNews');
         Route::get('delete', 'System\NewsController@getDeleteNews')->name('system.news.getDeleteNews');
     });
+    Route::group(['prefix' => 'blogs'], function () {
+        Route::get('list', 'System\BlogController@getListBlog')->name('system.blog.getListBlog');
+        Route::post('add', 'System\BlogController@postAddBlog')->name('system.blog.postAddBlog');
+        Route::get('edit/{id}', 'System\NewsController@getEditNews')->name('system.news.getEditNews');
+        Route::post('edit', 'System\NewsController@postEditNews')->name('system.news.postEditNews');
+        Route::get('delete', 'System\NewsController@getDeleteNews')->name('system.news.getDeleteNews');
+    });
+    Route::group(['prefix' => 'slide'], function () {
+        Route::get('list', 'System\SlideController@getListSlide')->name('system.slide.getListSlide');
+        Route::post('add', 'System\SlideController@postAddSlide')->name('system.slide.postAddSlide');
+        Route::get('edit/{id}', 'System\NewsController@getEditNews')->name('system.news.getEditNews');
+        Route::post('edit', 'System\NewsController@postEditNews')->name('system.news.postEditNews');
+        Route::get('delete', 'System\NewsController@getDeleteNews')->name('system.news.getDeleteNews');
+    });
+
     Route::group(['prefix' => 'quote'], function () {
         Route::get('list', 'System\QuoteController@getListQuote')->name('system.quote.getListQuote');
         Route::post('add', 'System\QuoteController@postAddQuote')->name('system.quote.postAddQuote');
@@ -121,6 +136,7 @@ Route::group(['prefix' => 'system', 'middleware' => 'AdminLoginMiddleware'], fun
     Route::group(['prefix' => 'menu'], function () {
         Route::get('list', 'System\MenuController@getListMenu')->name('system.menu.getListMenu');
         Route::post('edit', 'System\MenuController@postEditMenu')->name('system.menu.postEditMenu');
+        Route::post('add', 'System\MenuController@postAddMenu')->name('system.menu.postAddMenu');
     });
     // Route::get('meta', 'Admin\ContactController@getMeta')->name('getMeta');
     // Route::post('meta', 'Admin\ContactController@postMeta')->name('postMeta');
